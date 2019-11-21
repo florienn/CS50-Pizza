@@ -1,0 +1,23 @@
+{% extends "pizza/base.html" %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block body %}
+  <h1>Login here!</h1>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" name="username">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+    <div class='text-center m-2'>
+      <a href="{% url 'signin'%}">Sign In</a>
+    </div>
+</div>
+{% endblock %}
