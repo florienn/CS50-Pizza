@@ -1,4 +1,8 @@
 from django.db import models
+from django.db.models import Sum
+from django.contrib.auth import get_user_model
+
+
 
 class Category(models.Model):
     name = models.CharField(max_length=65)
@@ -35,8 +39,19 @@ class Toppings(models.Model):
         return f'{self.name}'
 
 class Order(models.Model):
-    type = models.ManyToManyField(Type)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
     toppings = models.ManyToManyField(Toppings, blank=True, related_name='Order')
+    user = models.ForeignKey(
+      get_user_model(),
+      on_delete=models.CASCADE
+    )
+
+    #price =
+
+    #type.price + toppings.price * quantity
+
+    date_ordered = models.DateTimeField(null=True)
+    is_ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.type}, {self.base} with {self.toppings}'
+        return f'{self.type}, {self.toppings} for {self.price} by {self.user} is ordered = {self.is_ordered}'
