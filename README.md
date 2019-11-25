@@ -3,7 +3,7 @@
 Web Programming with Python and JavaScript
 
 ##### 25/11/2019 update
-- Verbeterde en volledig werkende versie van menu op de website geplaatst
+- Verbeterde en volledige versie van menu in HTML geplaatst
 - Alle HTML pagina's toegevoegd
 - Model voor shopping cart verbeterd
 
