@@ -87,8 +87,10 @@ def register_view(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
+
         if not password == password2:
             return render(request,'orders/register.html',{'message':"Passwords don't match."})
+
         if User.objects.filter(username=username).exists():
             return render(request,'orders/register.html',{'message':"Username already exists."})
 
@@ -96,9 +98,8 @@ def register_view(request):
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        return render(request,'orders/login.html',{'message':'Registered. You can log in now.'})
+        return render(request,'orders/login.html',{'message':'Registered. Please log in now.'})
     return render(request,'orders/register.html')
-
 
 
 def cart_view(request):
