@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Sum
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -35,22 +36,20 @@ class Toppings(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, default='0.00')
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} for {self.price} '
+
 
 class Order(models.Model):
-    type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    toppings = models.ManyToManyField(Toppings, blank=True, related_name='Order')
-    user = models.ForeignKey(
-      get_user_model(),
-      on_delete=models.CASCADE
-    )
-
-    #price =
-
-    #type.price + toppings.price * quantity
-
-    date_ordered = models.DateTimeField(null=True)
+    type = models.CharField(max_length=65, blank=True)
+    topping = models.CharField(max_length=65, blank=True)
+    topping2 = models.CharField(max_length=65, blank=True)
+    topping3 = models.CharField(max_length=65, blank=True)
+    quantity = models.IntegerField(default='0')
+    user = models.CharField(max_length=65, blank=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2, default='0.00')
+    date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
+    is_added = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.type}, {self.toppings} for {self.price} by {self.user} is ordered = {self.is_ordered}'
+        return f'{self.type} for {self.price} by {self.user}, ordered = {self.is_ordered} {self.topping} {self.topping2} {self.topping2}'

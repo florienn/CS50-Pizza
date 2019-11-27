@@ -7,11 +7,6 @@
 {% block body %}
 <div class=' mx-auto w-50 p-3'>
   <div class='text-center text-info'>Register</div>
-  {% if message %}
-  <div class='text-center text-danger'>
-      {{message}}
-  </div>
-  {% endif %}
   <form class='m-5' action="{% url 'register' %}" method="POST">
       {% csrf_token %}
       <div class="form-group">
@@ -39,6 +34,11 @@
           <input type="password" class="form-control" name="password2">
       </div>
       <button type="submit" class="btn btn-primary">Register</button>
+    {% if message %}
+    <div class='text-center text-danger'>
+      {{message}}
+    </div>
+    {% endif %}
   </form>
 </div>
 {% endblock %}

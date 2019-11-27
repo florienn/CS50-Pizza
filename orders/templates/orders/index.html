@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block body %}
-
+{% if message %}
+<div class='text-center text-danger'>
+  {{message}}
+</div>
+{% endif %}
   <div class="p-4">
     <div class="mb-3">
       <a href="">
@@ -28,13 +32,13 @@
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:":2" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}">{{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
@@ -60,21 +64,21 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"2:4" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -100,29 +104,29 @@
       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"4:6" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 1: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 2: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -148,37 +152,37 @@
       <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"6:8" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 1: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 2: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 3: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping3" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -204,13 +208,13 @@
       <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"8:10" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
@@ -239,13 +243,13 @@
       <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"10:12" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
@@ -271,21 +275,21 @@
       <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"12:14" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -311,29 +315,29 @@
       <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"14:16" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 1: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 2: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -359,37 +363,37 @@
       <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"16:18" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 1: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 2: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Topping 3: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
-                  {% for topping in toppings|slice:":19" %}
-                    <option value="{{ topping.id }}">{{ topping }}</option>
+                <select name="topping3" class="form-control" id="exampleFormControlSelect1">
+                  {% for topping in toppings|slice:"1:19" %}
+                    <option value="{{ topping.id }}">{{ topping.name }}</option>
                   {% endfor %}
                 </select>
               </div>
@@ -415,13 +419,13 @@
       <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
                 <label for="exampleFormControlSelect1">Size: </label>
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"18:20" %}
-                    <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                    <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                   {% endfor %}
                 </select>
               </div>
@@ -450,11 +454,11 @@
     <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"20:22" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -462,9 +466,9 @@
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -490,21 +494,21 @@
     <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"22:24" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -530,21 +534,21 @@
     <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"24:26" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -570,21 +574,21 @@
     <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"26:28" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -610,21 +614,21 @@
     <div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"28:30" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -650,21 +654,21 @@
     <div id="collapseSixteen" class="collapse" aria-labelledby="headingSixteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"30:32" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -690,21 +694,21 @@
     <div id="collapseSeventeen" class="collapse" aria-labelledby="headingSeventeen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"32:34" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -730,21 +734,21 @@
     <div id="collapseEighteen" class="collapse" aria-labelledby="headingEighteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"34:36" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -770,21 +774,21 @@
     <div id="collapseNineteen" class="collapse" aria-labelledby="headingNineteen" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"36:38" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -810,21 +814,21 @@
     <div id="collapseTwenty" class="collapse" aria-labelledby="headingTwenty" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"38:40" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -850,21 +854,21 @@
     <div id="collapseTwentyOne" class="collapse" aria-labelledby="headingTwentyOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"40:41" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"19:23" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:24" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -890,21 +894,21 @@
     <div id="collapseTwentyTwo" class="collapse" aria-labelledby="headingTwentyTwon" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"41:43" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -930,21 +934,21 @@
     <div id="collapseTwentyThree" class="collapse" aria-labelledby="headingTwentyThree" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"43:45" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -971,21 +975,21 @@
     <div id="collapseTwentyFour" class="collapse" aria-labelledby="headingTwentyFour" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"45:47" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -1011,21 +1015,21 @@
     <div id="collapseTwentyFive" class="collapse" aria-labelledby="headingTwentyFive" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"47:49" %}
-                  <option value="{{ size.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                  <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
               </select>
             </div>
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
-                {% for topping in toppings|slice:"22:24" %}
-                  <option value="{{ topping.id }}">{{ topping }} (€{{ topping.price }}) </option>
+              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                {% for topping in toppings|slice:"20:21" %}
+                  <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                 {% endfor %}
               </select>
             </div>
@@ -1055,10 +1059,10 @@
       <div id="collapseTwentySix" class="collapse" aria-labelledby="headingTwentySix" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"49:50" %}
                     <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                   {% endfor %}
@@ -1086,10 +1090,10 @@
       <div id="collapseTwentySeven" class="collapse" aria-labelledby="headingTwentySeven" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"50:51" %}
                     <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                   {% endfor %}
@@ -1117,10 +1121,10 @@
       <div id="collapseTwentyNine" class="collapse" aria-labelledby="headingTwentyNine" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <form>
+            <form class='m-5' action="{% url 'index' %}" method="POST">
               {% csrf_token %}
               <div class="form-group row">
-                <select name="size" class="form-control" id="exampleFormControlSelect1">
+                <select name="type" class="form-control" id="exampleFormControlSelect1">
                   {% for type in type|slice:"51:52" %}
                     <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                   {% endfor %}
@@ -1152,10 +1156,10 @@
     <div id="collapseThirty" class="collapse" aria-labelledby="headingThirty" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"52:53" %}
                   <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                 {% endfor %}
@@ -1183,10 +1187,10 @@
     <div id="collapseThirtyOne" class="collapse" aria-labelledby="headingThirtyOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"53:54" %}
                   <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                 {% endfor %}
@@ -1214,10 +1218,10 @@
     <div id="collapseThirtyTwo" class="collapse" aria-labelledby="headingThirtyTwo" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"54:55" %}
                   <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                 {% endfor %}
@@ -1245,10 +1249,10 @@
     <div id="collapseThirtyThree" class="collapse" aria-labelledby="headingThirtyThree" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"55:56" %}
                   <option value="{{ type.size }}"> One size (€{{ type.price }})</option>
                 {% endfor %}
@@ -1279,11 +1283,11 @@
     <div id="collapseThirtyFour" class="collapse" aria-labelledby="headingThirtyFour" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"56:58" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -1311,11 +1315,11 @@
     <div id="collapseThirtyFive" class="collapse" aria-labelledby="headingThirtyFive" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"58:60" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -1343,11 +1347,11 @@
     <div id="collapseThirtySix" class="collapse" aria-labelledby="headingThirtySix" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"60:62" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -1375,11 +1379,11 @@
     <div id="collapseThirtySeven" class="collapse" aria-labelledby="headingThirtySeven" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"62:64" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -1407,11 +1411,11 @@
     <div id="collapseThirtyEight" class="collapse" aria-labelledby="headingThirtyEight" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"64:66" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}
@@ -1439,11 +1443,11 @@
     <div id="collapseThirtyNine" class="collapse" aria-labelledby="headingThirtyNine" data-parent="#accordionExample">
       <div class="card-body">
         <div class="form-group">
-          <form>
+          <form class='m-5' action="{% url 'index' %}" method="POST">
             {% csrf_token %}
             <div class="form-group row">
               <label for="exampleFormControlSelect1">Size: </label>
-              <select name="size" class="form-control" id="exampleFormControlSelect1">
+              <select name="type" class="form-control" id="exampleFormControlSelect1">
                 {% for type in type|slice:"66:68" %}
                   <option value="{{ type.size }}"> {{ type.size }} (€{{ type.price }})</option>
                 {% endfor %}

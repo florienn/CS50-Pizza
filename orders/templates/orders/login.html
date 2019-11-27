@@ -7,11 +7,6 @@
 {% block body %}
   <h1>Login here!</h1>
   <div class=' mx-auto w-50 p-3'>
-    {% if message %}
-        <div class='text-center'>
-            {{message}}
-        </div>
-    {% endif %}
     <form class='m-5' action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -23,7 +18,12 @@
             <input type="password" class="form-control" name="password">
         </div>
         <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
+        {% if message %}
+        <div class='text-center text-danger'>
+          {{message}}
+        </div>
+        {% endif %}
+      </form>
     <div class='text-center m-2'>
         No account yet?
     </div>
