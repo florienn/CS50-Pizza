@@ -2,11 +2,11 @@
 
 Web Programming with Python and JavaScript
 
-#####Personal touch
+##### Personal touch
 - Confirmation email met orders en totale prijs
 - Mogelijkheid om shopping cart te legen
 
-#####Viewing Orders
+##### Viewing Orders
 - Superusers zien i.p.v. "previous orders" "all orders".
 
 ##### 26/11/2019 update
