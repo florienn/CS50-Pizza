@@ -13,10 +13,10 @@ Florien Altena
 
 ##### Contents
 - Models.py bevat alle data modellen voor de app
-- Views.py
+- Views.py behandelt alle interactie tussen de gebruiker en de app
 - Base.html bepaalt grotendeels de layout van de pagina's
 - Cart.html geeft de inhoud van het winkelmandje weer
-- index.html is de homepagina en het menu
+- index.html is de homepagina en tevens het menu
 - user.html laat gewone (ingelogde) gebruikers een overzicht zien van alle bestellingen van de gebruiker in kwestie, superusers kunnen hier alle geplaatste bestellingen zien
 - login.html en register.html bieden een inlog functie
 
