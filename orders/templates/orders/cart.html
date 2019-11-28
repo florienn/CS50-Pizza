@@ -5,9 +5,12 @@
 {% endblock %}
 
 {% block body %}
+
 {% if user.is_authenticated %}
+
   {% if items_total == 0 %}
     <h1>Cart is empty!</h1>
+
   {% else %}
   <h1>Shopping cart ({{ items_total }}) </h1>
     <table class="table">
@@ -32,9 +35,11 @@
         <td></td>
       </tr>
     {% endfor %}
+
     </table>
     <form class='m-5' action="{% url 'cart' %}" method="POST">
       <h4>Total price: €{{ total.price__sum|floatformat:2 }}</h4>
+
       {% csrf_token %}
       <div class="form-group">
           <div class="form-check">
@@ -52,11 +57,15 @@
       </div>
     </form>
     <form class='m-5' action="{% url 'delete_cart' %}" method="POST">
+      
       {% csrf_token %}
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Delete items</button>
       </div>
     </form>
+
   {% endif %}
+
 {% endif %}
+
 {% endblock %}
