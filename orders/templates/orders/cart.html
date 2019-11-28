@@ -5,72 +5,91 @@
 {% endblock %}
 
 {% block body %}
-
-{% if user.is_authenticated %}
-
-  {% if items_total == 0 %}
-    <h1>Cart is empty!</h1>
-
-  {% else %}
-    <h1>Shopping cart ({{ items_total }}) </h1>
-      <table class="table">
-      <tr>
-        <th scope="col">Order</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-        <th scope="col">Date and time</th>
-      </tr>
-      {% for o in order %}
+  {% if user.is_authenticated %}
+    {% if items_total == 0 %}
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-title">Hmmm... not much going on here</h4>
+          <p class="card-text">Your shopping cart is empty. Have a look at our menu!</p>
+        </div>
+      </div>
+      {% else %}
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Shopping cart ({{ items_total }})</h4>
+          </div>
+        <table class="table">
         <tr>
-          <td scope="row">{{ o.type }}</td>
-          <td>{{ o.quantity }}</td>
-          <td>€{{ o.price }}</td>
-          <td>{{ o.date_ordered }}</td>
+          <th scope="col">Order</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Date and time</th>
         </tr>
-      {% empty %}
+        {% for ord in order %}
+          <tr>
+            <td scope="row">{{ ord.type }}</td>
+            <td>{{ ord.quantity }}</td>
+            <td>€{{ ord.price }}</td>
+            <td>{{ ord.date_ordered }}</td>
+          </tr>
+          {% empty %}
+            <tr>
+              <td scope="row"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        {% endfor %}
         <tr>
-          <td scope="row"></td>
+          <td scope="row"><h5>Total price: €{{ total.price__sum|floatformat:2 }}</h5></td>
           <td></td>
           <td></td>
-          <td></td>
-        </tr>
-      {% endfor %}
-      <tr>
-        <td scope="row"><h5>Total price: €{{ total.price__sum|floatformat:2 }}</h5></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      </table>
-
-      <form class="form-inline" action="{% url 'cart' %}" method="POST">
-        {% csrf_token %}
-          <div class="form-group mr-4 ">
-            <textarea class="form-control" rows="3" name="comment" placeholder="Add a comment to your order (optional)"></textarea>
-          </div>
-          <div class="form-group mr-4">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
-              Confirm order
-            </label>
-            <div class="invalid-feedback">
-              Please confirm your order.
-            </div>
-          </div>
-          <div class="form-group mr-4">
-              <button type="submit" class="btn btn-primary">Place order</button>
-          </div>
-          <div class="form-group mr-4">
-            <form class='m-5' action="{% url 'delete_cart' %}" method="POST">
+          <td><div class="form-group mr-4">
+            <form class='form-inline-center' action="{% url 'delete_cart' %}" method="POST">
               {% csrf_token %}
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Delete items</button>
-              </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-danger">Delete items</button>
+                </div>
             </form>
           </div>
-        </form>
-      {% endif %}
-
+          </td>
+        </tr>
+        </table>
+        <div class="card-body">
+          <h4 class="card-title">Shipping information</h4>
+          <form class="form" action="{% url 'cart' %}" method="POST">
+            {% csrf_token %}
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" name="address" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city" required>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip">Zip code</label>
+                <input type="text" class="form-control" id="inputZip" name="zip" required>
+              </div>
+              <div class="form-group col-md-8">
+                <label for="exampleFormControlTextarea4">Add a comment to your order (optional)</label>
+                <textarea class="form-control" name="comment" id="exampleFormControlTextarea4" rows="3" placeholder="Dietary restrictions, general comments, etc."></textarea>
+              </div>
+              <div class="form-group col-md-8">
+                <input class="form-control" type="checkbox" value="" id="invalidCheck" required>
+                <label for="invalidCheck">
+                  Confirm order
+                </label>
+                <div class="invalid-feedback">
+                  Please confirm your order.
+                </div>
+              </div>
+              <div class="form-group col-md-2">
+                <button type="submit" class="btn btn-primary">Place order</button>
+              </div>
+          </form>
+        </div>
+      </div>
     {% endif %}
-
-    {% endblock %}
+  {% endif %}
+{% endblock %}

@@ -6,7 +6,10 @@
 
 {% block body %}
   {% if not user.is_superuser %}
-    <h1>Previous orders ({{ order_total }})</h1>
+    <div class="card text-center">
+      <div class="card-body">
+        <h4 class="card-title">Previous orders ({{ order_total }})</h4>
+      </div>
       <table class="table">
       <tr>
         <th scope="col">Order</th>
@@ -30,13 +33,19 @@
         </tr>
       {% endfor %}
       </table>
+    </div>
   {% else %}
-      <h1>All orders ({{ all_orders_total }})</h1>
+    <div class="card text-center">
+      <div class="card-body">
+        <h4 class="card-title">All orders ({{ all_orders_total }})</h4>
+      </div>
       <table class="table">
       <tr>
         <th scope="col">Order</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
+        <th scope="col">Comments</th>
+        <th scope="col">Address</th>
         <th scope="col">Date</th>
       </tr>
       {% for o in all_orders %}
@@ -44,6 +53,12 @@
           <td scope="row">{{ o.type }}</td>
           <td>{{ o.quantity }}</td>
           <td>€{{ o.price }}</td>
+          {% if o.comment %}
+            <td>"{{ o.comment }}"</td>
+          {% else %}
+            <td>No comment</td>
+          {% endif %}
+          <td>{{ o.address }}</td>
           <td>{{ o.date_ordered }}</td>
         </tr>
       {% empty %}
@@ -55,5 +70,6 @@
         </tr>
       {% endfor %}
       </table>
+    </div>
   {% endif %}
 {% endblock %}
