@@ -16,10 +16,11 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.core.mail import send_mail
+from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from decimal import *
-from .models import Toppings, Base, Category, Size, Type, Order
 
+from .models import Toppings, Base, Category, Size, Type, Order
 
 def index(request):
     """
@@ -40,15 +41,9 @@ def index(request):
         quantity = request.POST.get('quantity')
         user = request.user
         type = Type.objects.get(id=type)
-
-        try:
-            topping = request.POST.get('topping')
-            topping2 = request.POST.get('topping2')
-            topping3 = request.POST.get('topping3')
-        except:
-            topping = None
-            topping2 = None
-            topping3 = None
+        topping = request.POST.get('topping')
+        topping2 = request.POST.get('topping2')
+        topping3 = request.POST.get('topping3')
 
         try:
             topping = Toppings.objects.get(id=topping)
@@ -58,7 +53,7 @@ def index(request):
             price = (type.price + topping_price) * int(quantity)
             order = Order(type=type, topping=topping, topping2=topping2, topping3=topping3, user=user, price=price, quantity=quantity, is_added=True)
             order.save()
-        except:
+        except ObjectDoesNotExist:
             price = type.price * int(quantity)
             order = Order(type=type, user=user, price=price, quantity=quantity, is_added=True)
             order.save()
