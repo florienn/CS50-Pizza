@@ -50,6 +50,7 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
     is_added = models.BooleanField(default=False)
+    comment = models.CharField(max_length=280, blank=True)
 
     def __str__(self):
         return f'{self.type} for {self.price} by {self.user}, ordered = {self.is_ordered} {self.topping} {self.topping2} {self.topping2}'

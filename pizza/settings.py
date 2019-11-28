@@ -27,14 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#  Mail for order confirmation
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'cs50pizzaplace@gmail.com'
-EMAIL_HOST_PASSWORD = 'Test1test1'
-
 # Application definition
 INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
@@ -125,3 +117,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#  Mail for order confirmation
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cs50pizzaplace@gmail.com'
+EMAIL_HOST_PASSWORD = 'Test1test1'

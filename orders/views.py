@@ -105,14 +105,18 @@ def register_view(request):
 def cart_view(request):
     user = request.user
     if request.method == 'POST':
-        order = Order.objects.filter(user=user, is_added=True, is_ordered=False).exclude(price='0.00')
-        price = Order.objects.filter(user=user, is_added=True, is_ordered=False).exclude(price='0.00').aggregate(Sum('price'))
+        comment = request.POST['comment']
+        order = Order.objects.filter(user=user, is_added=True, is_ordered=False).update(comment=comment)
+        order = Order.objects.filter(user=user, is_added=True, is_ordered=False)
+        price = Order.objects.filter(user=user, is_added=True, is_ordered=False).aggregate(Sum('price'))
         user_email = User.objects.get(username=request.user)
         user_email = user_email.email
         subject = 'Thank you for your order!'
-        message = "Your order: %s for €%s" % (
-        order.all(),
-        round(price['price__sum'], 2))
+        message = "Thank you for your order! The total price for your order is €%s. Comments: '%s.' Order = %s " % (
+        round(price['price__sum'], 2),
+        comment,
+        order
+        )
         email_from = settings.EMAIL_HOST_USER
         to_email = [email_from , user_email]
         send_mail(subject, message, email_from, to_email, fail_silently=False)

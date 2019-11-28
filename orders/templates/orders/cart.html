@@ -12,37 +12,43 @@
     <h1>Cart is empty!</h1>
 
   {% else %}
-  <h1>Shopping cart ({{ items_total }}) </h1>
-    <table class="table">
-    <tr>
-      <th scope="col">Order</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
-      <th scope="col">Date and time</th>
-    </tr>
-    {% for o in order %}
+    <h1>Shopping cart ({{ items_total }}) </h1>
+      <table class="table">
       <tr>
-        <td scope="row">{{ o.type }}</td>
-        <td>{{ o.quantity }}</td>
-        <td>€{{ o.price }}</td>
-        <td>{{ o.date_ordered }}</td>
+        <th scope="col">Order</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Date and time</th>
       </tr>
-    {% empty %}
+      {% for o in order %}
+        <tr>
+          <td scope="row">{{ o.type }}</td>
+          <td>{{ o.quantity }}</td>
+          <td>€{{ o.price }}</td>
+          <td>{{ o.date_ordered }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td scope="row"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      {% endfor %}
       <tr>
-        <td scope="row"></td>
+        <td scope="row"><h5>Total price: €{{ total.price__sum|floatformat:2 }}</h5></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
-    {% endfor %}
+      </table>
 
-    </table>
-    <form class='m-5' action="{% url 'cart' %}" method="POST">
-      <h4>Total price: €{{ total.price__sum|floatformat:2 }}</h4>
-
-      {% csrf_token %}
-      <div class="form-group">
-          <div class="form-check">
+      <form class="form-inline" action="{% url 'cart' %}" method="POST">
+        {% csrf_token %}
+          <div class="form-group mr-4 ">
+            <textarea class="form-control" rows="3" name="comment" placeholder="Add a comment to your order (optional)"></textarea>
+          </div>
+          <div class="form-group mr-4">
             <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
             <label class="form-check-label" for="invalidCheck">
               Confirm order
@@ -51,21 +57,20 @@
               Please confirm your order.
             </div>
           </div>
-        </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Place order</button>
-      </div>
-    </form>
-    <form class='m-5' action="{% url 'delete_cart' %}" method="POST">
-      
-      {% csrf_token %}
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Delete items</button>
-      </div>
-    </form>
+          <div class="form-group mr-4">
+              <button type="submit" class="btn btn-primary">Place order</button>
+          </div>
+          <div class="form-group mr-4">
+            <form class='m-5' action="{% url 'delete_cart' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Delete items</button>
+              </div>
+            </form>
+          </div>
+        </form>
+      {% endif %}
 
-  {% endif %}
+    {% endif %}
 
-{% endif %}
-
-{% endblock %}
+    {% endblock %}
