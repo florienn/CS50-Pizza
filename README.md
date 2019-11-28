@@ -4,6 +4,7 @@ Web Programming with Python and JavaScript
 
 ##### Personal touch
 - Confirmation email met orders en totale prijs
+- Gebruikers kunnen opmerkingen toevoegen aan bestellingen
 - Mogelijkheid om shopping cart te legen
 
 ##### Viewing Orders
