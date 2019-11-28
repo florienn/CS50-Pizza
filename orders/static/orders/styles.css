@@ -3,6 +3,7 @@
  }
 
  h1 {
+   margin-top: 4em;
    color:blue;
  }
 
@@ -48,11 +49,13 @@
      transition: all 0.5s ease 0s;
      box-shadow: 0 1px 2px rgba(43,59,93,0.30);
  }
+
  #accordion .panel-title a.collapsed {
      box-shadow: none;
      color: #676767;
      box-shadow: 0 1px 2px rgba(43,59,93,0.30);
  }
+
  #accordion .panel-title a:before,
  #accordion .panel-title a.collapsed:before {
      content: "\f067";
@@ -70,10 +73,12 @@
      transform: rotate(135deg);
      transition: all 0.3s ease 0s;
  }
+
  #accordion .panel-title a.collapsed:before {
      color: #676767;
      transform: rotate(0);
  }
+
  #accordion .panel-title a:after {
      content: "";
      width: 1px;
@@ -83,6 +88,7 @@
      top: 0;
      right: 55px;
  }
+
  #accordion .panel-body {
      padding: 0px 15px;
      border: none;

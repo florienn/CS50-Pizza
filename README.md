@@ -2,13 +2,28 @@
 
 Web Programming with Python and JavaScript
 
-##### Personal touch
-- Confirmation email met orders en totale prijs
-- Gebruikers kunnen opmerkingen toevoegen aan bestellingen
-- Mogelijkheid om shopping cart te legen
+Minor programmeren (CS50), Web App Studio
+November 2019
+Florien Altena
 
-##### Viewing Orders
-- Superusers zien i.p.v. "previous orders" "all orders".
+##### Personal touch
+- Gebruikers ontvangen een bevestigingsemail waarin de bestelling (en het aantal stuks), de totale prijs, het ingevoerde adres en eventueel extra opmerkingen vermeld staan
+- Shopping cart kan geleegd worden
+- Gebruikers kunnen met slechts één email adres registreren
+
+##### Contents
+- Models.py bevat alle data modellen voor de app
+- Views.py
+- Base.html bepaalt grotendeels de layout van de pagina's
+- Cart.html geeft de inhoud van het winkelmandje weer
+- index.html is de homepagina en het menu
+- user.html laat gewone (ingelogde) gebruikers een overzicht zien van alle bestellingen van de gebruiker in kwestie, superusers kunnen hier alle geplaatste bestellingen zien
+- login.html en register.html bieden een inlog functie
+
+# Logboek
+
+##### 27/11/2019 update
+- Afgemaakt
 
 ##### 26/11/2019 update
 - Shopping cart model klaar en werkend

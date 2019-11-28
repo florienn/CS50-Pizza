@@ -5,33 +5,27 @@
 {% endblock %}
 
 {% block body %}
-
   <div class="container">
     <div class="row justify-content-center align-items-center" style="height:100vh">
       <div class="col-4">
         <div class="card">
           <div class="card-body">
+            <h4 class="card-title">Log in</h4>
             <form class='m-5' action="{% url 'login' %}" method="POST" autocomplete="off">
               {% csrf_token %}
-              <div class="form-group">
-                  <label for="username">Username:</label>
-                  <input type="text" class="form-control" name="username">
-              </div>
-              <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" class="form-control" name="password">
-              </div>
-              <button type="submit" class="btn btn-primary">Log In</button>
-              {% if message %}
-              <div class='text-center text-danger'>
-                {{ message }}
-              </div>
-              {% endif %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Log In</button>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 {% endblock %}

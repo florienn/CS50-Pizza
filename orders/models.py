@@ -46,11 +46,14 @@ class Order(models.Model):
     topping3 = models.CharField(max_length=65, blank=True)
     quantity = models.IntegerField(default='0')
     user = models.CharField(max_length=65, blank=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2, default='0.00')
+    price = models.DecimalField(max_digits=6, decimal_places=2, default='0.00')
     date_ordered = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
     is_added = models.BooleanField(default=False)
+    address = models.CharField(max_length=280, blank=True)
+    city = models.CharField(max_length=280, blank=True)
+    zip = models.CharField(max_length=280, blank=True)
     comment = models.CharField(max_length=280, blank=True)
 
     def __str__(self):
-        return f'{self.type} for {self.price} by {self.user}, ordered = {self.is_ordered} {self.topping} {self.topping2} {self.topping2}'
+        return f'{self.type} for {self.price} by {self.user} {self.date_ordered}'
