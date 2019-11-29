@@ -27,14 +27,14 @@
         </tr>
         {% for ord in order %}
           <tr>
-            <td scope="row">{{ ord.type }}</td>
+            <td>{{ ord.type }}</td>
             <td>{{ ord.quantity }}</td>
             <td>€{{ ord.price }}</td>
             <td>{{ ord.date_ordered }}</td>
           </tr>
           {% empty %}
             <tr>
-              <td scope="row"></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>

@@ -4,13 +4,17 @@
 
 /* Bootstrap accordion snippet: https://bootsnipp.com/snippets/z8kkn */
  h4 {
-   text-align: center;
-   margin: 30px 50px;
-   color: #444;
+     text-align: center;
+     margin: 30px 50px;
+     color: #444;
  }
 
+.yo {
+    justify-content: center;
+}
+
  .mt-10 {
-   margin-top:20px;
+    margin-top:20px;
  }
 
  a:hover, a:focus {
