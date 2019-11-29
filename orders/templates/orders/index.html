@@ -13,13 +13,13 @@
     </div>
   </div>
 
-  <!-- Regular pizza -->  
+  <!-- Regular pizza -->
   <div class="container">
     <div class="card-body">
       <h4 class="card-title">{{ category|first }}</h4>
     </div>
-    <div class="col-mb-9">
-      <center>
+    <center>
+      <div class="col-mb-9">
         <div class="col-md-6">
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -74,16 +74,16 @@
                         <form class='m-3' action="{% url 'index' %}" method="POST">
                           {% csrf_token %}
                             <div class="form-group row">
-                              <label for="exampleFormControlSelect1">Size: </label>
-                              <select name="type" class="form-control" id="exampleFormControlSelect1">
+                              <label for="exampleFormControlSelect2">Size: </label>
+                              <select name="type" class="form-control" id="exampleFormControlSelect2">
                                 {% for type in type|slice:"2:4" %}
                                   <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                                 {% endfor %}
                               </select>
                             </div>
                             <div class="form-group row">
-                              <label for="exampleFormControlSelect1">Topping: </label>
-                              <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                              <label for="exampleFormControlSelect3">Topping: </label>
+                              <select name="topping" class="form-control" id="exampleFormControlSelect3">
                                 {% for topping in toppings|slice:"1:19" %}
                                   <option value="{{ topping.id }}">{{ topping.name }}</option>
                                 {% endfor %}
@@ -118,24 +118,24 @@
                     <form class='m-3' action="{% url 'index' %}" method="POST">
                       {% csrf_token %}
                         <div class="form-group row">
-                          <label for="exampleFormControlSelect1">Size: </label>
-                          <select name="type" class="form-control" id="exampleFormControlSelect1">
+                          <label for="exampleFormControlSelect4">Size: </label>
+                          <select name="type" class="form-control" id="exampleFormControlSelect4">
                             {% for type in type|slice:"4:6" %}
                               <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                             {% endfor %}
                           </select>
                         </div>
                         <div class="form-group row">
-                          <label for="exampleFormControlSelect1">Topping 1: </label>
-                          <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                          <label for="exampleFormControlSelect5">Topping 1: </label>
+                          <select name="topping" class="form-control" id="exampleFormControlSelect5">
                             {% for topping in toppings|slice:"1:19" %}
                               <option value="{{ topping.id }}">{{ topping.name }}</option>
                             {% endfor %}
                           </select>
                         </div>
                         <div class="form-group row">
-                          <label for="exampleFormControlSelect1">Topping 2: </label>
-                          <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                          <label for="exampleFormControlSelect6">Topping 2: </label>
+                          <select name="topping2" class="form-control" id="exampleFormControlSelect6">
                             {% for topping in toppings|slice:"1:19" %}
                               <option value="{{ topping.id }}">{{ topping.name }}</option>
                             {% endfor %}
@@ -154,101 +154,102 @@
               </div>
             </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  {% for base in base|slice:"3:4" %} {{ base }} {% endfor %}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-              <div class="card-body">
-                <div class="form-group">
-                  <form class='m-3' action="{% url 'index' %}" method="POST">
-                    {% csrf_token %}
-                      <div class="form-group row">
-                        <label for="exampleFormControlSelect1">Size: </label>
-                        <select name="type" class="form-control" id="exampleFormControlSelect1">
-                          {% for type in type|slice:"6:8" %}
-                            <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleFormControlSelect1">Topping 1: </label>
-                        <select name="topping" class="form-control" id="exampleFormControlSelect1">
-                          {% for topping in toppings|slice:"1:19" %}
-                            <option value="{{ topping.id }}">{{ topping.name }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleFormControlSelect1">Topping 2: </label>
-                        <select name="topping2" class="form-control" id="exampleFormControlSelect1">
-                          {% for topping in toppings|slice:"1:19" %}
-                            <option value="{{ topping.id }}">{{ topping.name }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleFormControlSelect1">Topping 3: </label>
-                        <select name="topping3" class="form-control" id="exampleFormControlSelect1">
-                          {% for topping in toppings|slice:"1:19" %}
-                            <option value="{{ topping.id }}">{{ topping.name }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="form-group row">
-                        <label>Quantity: </label>
-                        <input type="number" name="quantity" placeholder="0" class="form-control" min="1" max="100" required>
-                      </div>
-                      <div class="form-group row">
-                        <input type="submit" value="Add to cart" class="btn btn-primary"/>
-                      </div>
-                  </form>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    {% for base in base|slice:"3:4" %} {{ base }} {% endfor %}
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="form-group">
+                    <form class='m-3' action="{% url 'index' %}" method="POST">
+                      {% csrf_token %}
+                        <div class="form-group row">
+                          <label for="exampleFormControlSelect7">Size: </label>
+                          <select name="type" class="form-control" id="exampleFormControlSelect7">
+                            {% for type in type|slice:"6:8" %}
+                              <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleFormControlSelect8">Topping 1: </label>
+                          <select name="topping" class="form-control" id="exampleFormControlSelect8">
+                            {% for topping in toppings|slice:"1:19" %}
+                              <option value="{{ topping.id }}">{{ topping.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleFormControlSelect9">Topping 2: </label>
+                          <select name="topping2" class="form-control" id="exampleFormControlSelect9">
+                            {% for topping in toppings|slice:"1:19" %}
+                              <option value="{{ topping.id }}">{{ topping.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <label for="exampleFormControlSelect10">Topping 3: </label>
+                          <select name="topping3" class="form-control" id="exampleFormControlSelect10">
+                            {% for topping in toppings|slice:"1:19" %}
+                              <option value="{{ topping.id }}">{{ topping.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <label>Quantity: </label>
+                          <input type="number" name="quantity" placeholder="0" class="form-control" min="1" max="100" required>
+                        </div>
+                        <div class="form-group row">
+                          <input type="submit" value="Add to cart" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFive">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                  {% for base in base|slice:"4:5" %} {{ base }} {% endfor %}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-              <div class="card-body">
-                <div class="form-group">
-                  <form class='m-3' action="{% url 'index' %}" method="POST">
-                    {% csrf_token %}
-                      <div class="form-group row">
-                        <label for="exampleFormControlSelect1">Size: </label>
-                        <select name="type" class="form-control" id="exampleFormControlSelect1">
-                          {% for type in type|slice:"8:10" %}
-                            <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="form-group row">
-                        <label>Quantity: </label>
-                        <input type="number" name="quantity" placeholder="0" class="form-control" min="1" max="100" required>
-                      </div>
-                      <div class="form-group row">
-                        <input type="submit" value="Add to cart" class="btn btn-primary"/>
-                      </div>
-                  </form>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFive">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    {% for base in base|slice:"4:5" %} {{ base }} {% endfor %}
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="form-group">
+                    <form class='m-3' action="{% url 'index' %}" method="POST">
+                      {% csrf_token %}
+                        <div class="form-group row">
+                          <label for="exampleFormControlSelect11">Size: </label>
+                          <select name="type" class="form-control" id="exampleFormControlSelect11">
+                            {% for type in type|slice:"8:10" %}
+                              <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group row">
+                          <label>Quantity: </label>
+                          <input type="number" name="quantity" placeholder="0" class="form-control" min="1" max="100" required>
+                        </div>
+                        <div class="form-group row">
+                          <input type="submit" value="Add to cart" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </center>
+      <center>
     </div>
-  </div>
 
   <!-- Sicilian pizza -->
   <div class="container">
@@ -274,8 +275,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect12">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect12">
                               {% for type in type|slice:"10:12" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -308,16 +309,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect13">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect13">
                               {% for type in type|slice:"12:14" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping: </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect14">Topping: </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect14">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
@@ -348,24 +349,24 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect15">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect15">
                               {% for type in type|slice:"14:16" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping 1: </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect16">Topping 1: </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect16">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping 2: </label>
-                            <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect17">Topping 2: </label>
+                            <select name="topping2" class="form-control" id="exampleFormControlSelect17">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
@@ -398,32 +399,32 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect18">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect18">
                               {% for type in type|slice:"16:18" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping 1: </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect19">Topping 1: </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect19">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping 2: </label>
-                            <select name="topping2" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect20">Topping 2: </label>
+                            <select name="topping2" class="form-control" id="exampleFormControlSelect20">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Topping 3: </label>
-                            <select name="topping3" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect21">Topping 3: </label>
+                            <select name="topping3" class="form-control" id="exampleFormControlSelect21">
                               {% for topping in toppings|slice:"1:19" %}
                                 <option value="{{ topping.id }}">{{ topping.name }}</option>
                               {% endfor %}
@@ -456,8 +457,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect23">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect23">
                               {% for type in type|slice:"18:20" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -480,6 +481,7 @@
         </div>
       </div>
     </div>
+  </div>
 
   <!-- Subs -->
   <div class="container">
@@ -505,16 +507,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect24">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect24">
                               {% for type in type|slice:"20:22" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect25">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect25">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -547,16 +549,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect26">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect26">
                               {% for type in type|slice:"22:24" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect27">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect27">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -589,16 +591,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect28">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect28">
                               {% for type in type|slice:"24:26" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect29">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect29">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -631,16 +633,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect30">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect30">
                               {% for type in type|slice:"26:28" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect31">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect31">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -673,16 +675,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect33">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect33">
                               {% for type in type|slice:"28:30" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect34">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect34">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -715,16 +717,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect35">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect35">
                               {% for type in type|slice:"30:32" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect36">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect36">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -757,16 +759,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect37">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect37">
                               {% for type in type|slice:"32:34" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect38">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect38">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -799,16 +801,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect39">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect39">
                               {% for type in type|slice:"34:36" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect40">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect40">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -841,16 +843,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect44">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect44">
                               {% for type in type|slice:"36:38" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect45">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect45">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -883,16 +885,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect46">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect46">
                               {% for type in type|slice:"38:40" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect47">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect47">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -925,16 +927,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect48">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect48">
                               {% for type in type|slice:"40:41" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect49">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect49">
                               {% for topping in toppings|slice:"20:24" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -967,16 +969,16 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect50">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect50">
                               {% for type in type|slice:"41:43" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
                             </select>
                           </div>
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Extra topping (optional): </label>
-                            <select name="topping" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect51">Extra topping (optional): </label>
+                            <select name="topping" class="form-control" id="exampleFormControlSelect51">
                               {% for topping in toppings|slice:"20:22" %}
                                 <option value="{{ topping.id }}">{{ topping.name }} (€{{ topping.price }}) </option>
                               {% endfor %}
@@ -1025,7 +1027,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect52">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect52">
                               {% for type in type|slice:"52:53" %}
                                 <option value="{{ type.id }}"> One size (€{{ type.price }})</option>
                               {% endfor %}
@@ -1058,7 +1061,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect53">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect53">
                               {% for type in type|slice:"53:54" %}
                                 <option value="{{ type.id }}"> One size (€{{ type.price }})</option>
                               {% endfor %}
@@ -1091,7 +1095,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect54">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect54">
                               {% for type in type|slice:"54:55" %}
                                 <option value="{{ type.id }}"> One size (€{{ type.price }})</option>
                               {% endfor %}
@@ -1124,7 +1129,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect55">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect55">
                               {% for type in type|slice:"55:56" %}
                                 <option value="{{ type.id }}"> One size (€{{ type.price }})</option>
                               {% endfor %}
@@ -1173,8 +1179,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect56">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect56">
                               {% for type in type|slice:"56:58" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -1207,8 +1213,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect57">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect57">
                               {% for type in type|slice:"58:60" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -1241,8 +1247,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect58">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect58">
                               {% for type in type|slice:"60:62" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -1275,8 +1281,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect59">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect59">
                               {% for type in type|slice:"62:64" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -1309,8 +1315,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect60">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect60">
                               {% for type in type|slice:"64:66" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
@@ -1343,8 +1349,8 @@
                       <form class='m-3' action="{% url 'index' %}" method="POST">
                         {% csrf_token %}
                           <div class="form-group row">
-                            <label for="exampleFormControlSelect1">Size: </label>
-                            <select name="type" class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect61">Size: </label>
+                            <select name="type" class="form-control" id="exampleFormControlSelect61">
                               {% for type in type|slice:"66:68" %}
                                 <option value="{{ type.id }}"> {{ type.size }} (€{{ type.price }})</option>
                               {% endfor %}
