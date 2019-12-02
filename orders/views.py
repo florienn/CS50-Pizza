@@ -77,7 +77,7 @@ def login_view(request):
          if user is not None:
              login(request, user)
              return HttpResponseRedirect('/')
-         return render(request, 'orders/error.html', {'message_danger': 'Invalid username/password.'})
+         return render(request, 'orders/login.html', {'message_danger': 'Invalid username/password.'})
     return render(request, 'orders/login.html')
 
 
